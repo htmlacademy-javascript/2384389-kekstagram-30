@@ -29,6 +29,7 @@ const DESCRIPTION = [
   'Места, которые вы посещаете, изменяют вас',
 ];
 
+//функция для получения чисел по порядку
 // const createIdGenerator = () => {
 //   let lastGeneratedId = 0;
 //   return () => {
@@ -49,6 +50,7 @@ const getRandomInteger = (a, b) => {
 const getRandomArrayElement = (item) =>
   item[getRandomInteger(0, item.length - 1)];
 
+//функция для получения рандомного уникального значения:
 const getUniqueRandomInteger = (a, b) => {
   const arr = [];
   return function () {
@@ -66,11 +68,11 @@ const getUniqueRandomInteger = (a, b) => {
 };
 
 const getCommentId = getUniqueRandomInteger(1, MAX_ID_COMMENTS);
-//const getAvatar = getUniqueRandomInteger(1, AMOUNT_AVATAR)
 
+//функция для сборки информации о комментариях:
 const getComment = () => ({
   id: getCommentId(),
-  //avatar: `img/avatar-${getAvatar()}.svg`,
+  avatar: `img/avatar-${getRandomInteger(1, AMOUNT_AVATAR)}.svg`,
   message: getRandomArrayElement(COMMENTS_LINE),
   name: getRandomArrayElement(COMMENTATORS_NAMES),
 });
