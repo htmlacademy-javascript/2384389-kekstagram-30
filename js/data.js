@@ -1,5 +1,6 @@
 import {getRandomInteger, getRandomArrayElement, getUniqueRandomInteger} from './utils.js';
 import {
+  AMOUNT_PHOTO,
   MIN_AMOUNT_LIKES,
   MAX_AMOUNT_LIKES,
   AMOUNT_AVATAR,
@@ -11,7 +12,7 @@ import {
   DESCRIPTION
 } from './constants.js';
 
-let amountPhoto = 25;
+//let amountPhoto = 0;
 
 const getCommentId = getUniqueRandomInteger(1, MAX_ID_COMMENTS);
 
@@ -31,8 +32,8 @@ const getComments = (n) => {
   return arr;
 };
 
-const getPhotoId = getUniqueRandomInteger(1, amountPhoto);
-const getImageId = getUniqueRandomInteger(1, amountPhoto);
+const getPhotoId = getUniqueRandomInteger(1, AMOUNT_PHOTO);
+const getImageId = getUniqueRandomInteger(1, AMOUNT_PHOTO);
 
 //функция для сборки данных о фото:
 const getPhotoInfo = () =>({
@@ -44,7 +45,7 @@ const getPhotoInfo = () =>({
 });
 
 const getPhotos = (n) => {
-  amountPhoto = n;
+  //amountPhoto = n;
   const photos = [];
   for (let i = 0; i < n; i++) {
     photos.push(getPhotoInfo());
