@@ -1,7 +1,9 @@
-import {getPhotos} from './data.js';
-import {AMOUNT_PHOTO} from './constants.js';
-import {renderThumbnails} from './thumbnail.js';
+import { getPhotos } from './data.js';
+import { AMOUNT_PHOTO } from './constants.js';
+import { renderGallery } from './gallery.js';
+
 
 const photos = getPhotos(AMOUNT_PHOTO);
 console.log(photos);
-renderThumbnails(photos);
+
+renderGallery(photos);
