@@ -36,4 +36,4 @@ const getUniqueRandomInteger = (a, b) => {
   };
 };
 
-export {getRandomInteger, getRandomArrayElement, getUniqueRandomInteger};
+export { getRandomInteger, getRandomArrayElement, getUniqueRandomInteger };
