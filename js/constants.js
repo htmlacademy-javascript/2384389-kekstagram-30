@@ -28,6 +28,8 @@ const DESCRIPTION = [
   'Раз в год отправляйся туда, где ты ещё ни разу не был',
   'Места, которые вы посещаете, изменяют вас',
 ];
+const MAX_HASHTAGS_COUNT = 5;
+const VALID_HASHTAG = /^#[a-zа-яё1-9]{1,19}$/i;
 
 export {
   AMOUNT_PHOTO,
@@ -39,5 +41,7 @@ export {
   MAX_ID_COMMENTS,
   COMMENTATORS_NAMES,
   COMMENTS_LINE,
-  DESCRIPTION
+  DESCRIPTION,
+  MAX_HASHTAGS_COUNT,
+  VALID_HASHTAG
 };
