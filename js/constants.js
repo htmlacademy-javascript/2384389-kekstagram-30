@@ -31,6 +31,11 @@ const DESCRIPTION = [
 const MAX_HASHTAGS_COUNT = 5;
 const VALID_HASHTAG = /^#[a-zа-яё1-9]{1,19}$/i;
 
+const DEFOULT_SCALE = 100;
+const MAX_SCALE = 100;
+const MIN_SCALE = 25;
+const CHENGE_STEP_SCALE = 25;
+
 export {
   AMOUNT_PHOTO,
   MIN_AMOUNT_LIKES,
@@ -43,5 +48,80 @@ export {
   COMMENTS_LINE,
   DESCRIPTION,
   MAX_HASHTAGS_COUNT,
-  VALID_HASHTAG
+  VALID_HASHTAG,
+  DEFOULT_SCALE,
+  MAX_SCALE,
+  MIN_SCALE,
+  CHENGE_STEP_SCALE
 };
+
+const EFFECT = {
+  DEFAULT: 'none',
+  CHROME: 'chrome',
+  SEPIA: 'sepia',
+  MARVIN: 'marvin',
+  PHOBOS: 'phobos',
+  HEAT: 'heat'
+};
+
+const OPTION_EFFECT_SLIDER = {
+  [EFFECT.DEFAULT]: {
+    min: 0,
+    max: 100,
+    step: 1,
+  },
+  [  EFFECT.CHROME]: {
+    min: 0,
+    max: 1,
+    step: 0.1,
+  },
+  [  EFFECT.SEPIA]: {
+    min: 0,
+    max: 1,
+    step: 0.1,
+  },
+  [  EFFECT.MARVIN]: {
+    min: 0,
+    max: 100,
+    step: 1,
+  },
+  [  EFFECT.PHOBOS]: {
+    min: 0,
+    max: 3,
+    step: 0.1,
+  },
+  [  EFFECT.HEAT]: {
+    min: 1,
+    max: 3,
+    step: 0.1,
+  },
+};
+
+const EFFECT_TO_FILTER = {
+  [  EFFECT.DEFAULT]: {
+    style: 'none',
+    unit: '',
+  },
+  [  EFFECT.CHROME]: {
+    style: 'grayscale',
+    unit: '',
+  },
+  [  EFFECT.SEPIA]: {
+    style: 'sepia',
+    unit: '',
+  },
+  [  EFFECT.MARVIN]: {
+    style: 'invert',
+    unit: '%',
+  },
+  [  EFFECT.PHOBOS]: {
+    style: 'blur',
+    unit: 'px',
+  },
+  [  EFFECT.HEAT]: {
+    style: 'brightness',
+    unit: '',
+  },
+};
+
+export {EFFECT, EFFECT_TO_FILTER, OPTION_EFFECT_SLIDER};
