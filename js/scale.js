@@ -42,3 +42,5 @@ getPreview(DEFOULT_SCALE);
 
 scaleButtonBigger.addEventListener('click', onButtonBiggerClick);
 scaleButtonSmaller.addEventListener('click', onButtonSmallerClick);
+
+export {getPreview};

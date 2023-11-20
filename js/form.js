@@ -1,5 +1,6 @@
 import {MAX_HASHTAGS_COUNT} from './constants.js';
 import {VALID_HASHTAG} from './constants.js';
+import {resetEffect} from './effects.js';
 
 const ErrorText = {
   INVALID_HASHTAG: 'Введён неправильный хэш-тег',
@@ -39,9 +40,7 @@ const verifyValidTags = (value) => {
   return resultValidVerify;
 };
 
-
 const verifyTagsCount = (value) => normalizeHashtags(value).length <= MAX_HASHTAGS_COUNT;
-
 
 const verifyTagUnique = (value) => {
   const lowerCaseTags = normalizeHashtags(value).map((tag) => tag.toLowerCase());
@@ -49,17 +48,9 @@ const verifyTagUnique = (value) => {
 };
 
 const openForm = () => {
+  resetEffect();
   overlay.classList.remove('hidden');
   body.classList.add('modal-open');
-};
-
-const onDocumentEscKeydown = (evt) => {
-  if (evt.target.name !== 'hashtags' && evt.target.name !== 'description') {
-    if (evt.key === 'Escape') {
-      evt.preventDefault();
-      closeForm();
-    }
-  }
 };
 
 const closeForm = () => {
@@ -71,6 +62,15 @@ const closeForm = () => {
   removeEventListenerEsc();
 };
 
+const onDocumentEscKeydown = (evt) => {
+  if (evt.target.name !== 'hashtags' && evt.target.name !== 'description') {
+    if (evt.key === 'Escape') {
+      evt.preventDefault();
+      closeForm();
+    }
+  }
+};
+
 document.addEventListener('keydown', onDocumentEscKeydown);
 
 const removeEventListenerEsc = () => {
@@ -79,7 +79,6 @@ const removeEventListenerEsc = () => {
 
 const onUploadInputChange = () => {
   openForm();
-
 };
 
 const onUploadInputClick = () => {
