@@ -1,5 +1,5 @@
 import {
-  DEFOULT_SCALE,
+  //DEFOULT_SCALE,
   MAX_SCALE,
   MIN_SCALE,
   CHENGE_STEP_SCALE
@@ -38,7 +38,7 @@ const onButtonSmallerClick = () => {
   lowerScale();
 };
 
-getPreview(DEFOULT_SCALE);
+//getPreview(DEFOULT_SCALE);
 
 scaleButtonBigger.addEventListener('click', onButtonBiggerClick);
 scaleButtonSmaller.addEventListener('click', onButtonSmallerClick);

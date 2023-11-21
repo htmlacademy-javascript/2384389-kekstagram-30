@@ -6,6 +6,7 @@ const fileField = form.querySelector('.img-upload__input');
 const overlay = form.querySelector('.img-upload__overlay');
 const body = form.querySelector('body');
 const buttonCansel = form.querySelector('.img-upload__cancel');
+const imagePreview = document.querySelector('.img-upload__preview img');
 
 const openForm = () => {
   resetEffect();
@@ -37,13 +38,18 @@ const removeEventListenerEsc = () => {
   document.removeEventListener('keydown', onDocumentEscKeydown);
 };
 
+const renderImageModal = () => {
+  const fileImage = fileField.files[0];
+  imagePreview.src = URL.createObjectURL(fileImage);
+};
+
 const onUploadInputChange = () => {
+  renderImageModal();
   openForm();
 };
 
 const onUploadInputClick = () => {
   closeForm();
-
 };
 
 form.addEventListener('submit', (evt) => {
