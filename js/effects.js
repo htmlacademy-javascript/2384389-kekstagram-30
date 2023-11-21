@@ -2,7 +2,6 @@ import {EFFECT, EFFECT_TO_FILTER, OPTION_EFFECT_SLIDER} from './constants.js';
 import {getPreview} from './scale.js';
 import {DEFOULT_SCALE} from './constants.js';
 
-
 const imageUpload = document.querySelector('.img-upload');
 const sliderContainer = imageUpload.querySelector('.img-upload__effect-level');
 const slider = sliderContainer.querySelector('.effect-level__slider'); //слайдер
