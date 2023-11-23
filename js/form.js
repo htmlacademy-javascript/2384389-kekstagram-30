@@ -1,11 +1,11 @@
-import {MAX_HASHTAGS_COUNT} from './constants.js';
-import {VALID_HASHTAG} from './constants.js';
 import {resetEffect} from './effects.js';
+import {isValid, resetValidation} from './validation.js';
+import { sendData } from './api.js';
+import {showSuccessMessage, showErrorMessage} from './message.js';
 
-const ErrorText = {
-  INVALID_HASHTAG: 'Введён неправильный хэш-тег',
-  INVALID_HASHTAGS_COUNT: `Максимум ${MAX_HASHTAGS_COUNT} хэш-тэгов`,
-  NOT_UNIQUE: 'Хэштеги не должны повторяться'
+const SUBMIT_BUTTON_CARTION = {
+  SUBMITTING: 'Отправляю...',
+  IDLE: 'Опубликовать',
 };
 
 const form = document.querySelector('.img-upload__form');
@@ -13,38 +13,17 @@ const fileField = form.querySelector('.img-upload__input');
 const overlay = form.querySelector('.img-upload__overlay');
 const body = form.querySelector('body');
 const buttonCansel = form.querySelector('.img-upload__cancel');
-const hachtags = form.querySelector('.text__hashtags');
+const imagePreview = document.querySelector('.img-upload__preview img');
+const submitButton = form.querySelector('.img-upload__submit');
 
-const pristine = new Pristine(form, {
-  classTo: 'img-upload__field-wrapper',
-  errorClass: 'img-upload__field-wrapper--error',
-  errorTextParent: 'img-upload__field-wrapper',
-});
+const toggleSubmitButton = (isDisabled) => {
+  submitButton.disabled = isDisabled;
 
-
-const normalizeHashtags = (stringTags) => stringTags.trim().split(' ').filter(Boolean);
-
-//const verifyValidTags = (value) => normalizeHashtags(value).every((tag) => VALID_HASHTAG.test(tag));
-
-
-const verifyValidTags = (value) => {
-  const tagsString = normalizeHashtags(value);
-  let resultValidVerify = true;
-  for (let i = 0; i < tagsString.length; i++) {
-    const element = VALID_HASHTAG.test(tagsString[i]);
-    if (element === false) {
-      resultValidVerify = false;
-      break;
-    }
+  if (isDisabled) {
+    submitButton.textContent = SUBMIT_BUTTON_CARTION.SUBMITTING;
+  } else {
+    submitButton.textContent = SUBMIT_BUTTON_CARTION.IDLE;
   }
-  return resultValidVerify;
-};
-
-const verifyTagsCount = (value) => normalizeHashtags(value).length <= MAX_HASHTAGS_COUNT;
-
-const verifyTagUnique = (value) => {
-  const lowerCaseTags = normalizeHashtags(value).map((tag) => tag.toLowerCase());
-  return lowerCaseTags.length === new Set(lowerCaseTags).size;
 };
 
 const openForm = () => {
@@ -55,15 +34,17 @@ const openForm = () => {
 
 const closeForm = () => {
   form.reset();
-  pristine.reset();
+  resetValidation();
   overlay.classList.add('hidden');
   body.classList.remove('modal-open');
   fileField.value = '';
   removeEventListenerEsc();
 };
 
+const isErrorMessegeExists = () => Boolean(document.querySelector('.error'));
+
 const onDocumentEscKeydown = (evt) => {
-  if (evt.target.name !== 'hashtags' && evt.target.name !== 'description') {
+  if (evt.target.name !== 'hashtags' && evt.target.name !== 'description' && !isErrorMessegeExists()) {
     if (evt.key === 'Escape') {
       evt.preventDefault();
       closeForm();
@@ -77,44 +58,53 @@ const removeEventListenerEsc = () => {
   document.removeEventListener('keydown', onDocumentEscKeydown);
 };
 
+
+const effectsPreview = form.querySelectorAll('.effects__preview ');
+const renderImageModal = () => {
+  const fileImage = fileField.files[0];
+  imagePreview.src = URL.createObjectURL(fileImage);
+  effectsPreview.forEach((preview) => {
+    preview.style.backgroundImage = `url('${imagePreview.src}')`;
+  });
+};
+
 const onUploadInputChange = () => {
+  renderImageModal();
   openForm();
 };
 
 const onUploadInputClick = () => {
   closeForm();
-
 };
 
-pristine.addValidator(
-  hachtags,
-  verifyTagsCount,
-  ErrorText.INVALID_HASHTAGS_COUNT,
-  3,
-  true
-);
-
-pristine.addValidator(
-  hachtags,
-  verifyTagUnique,
-  ErrorText.NOT_UNIQUE,
-  2,
-  true
-);
-
-pristine.addValidator(
-  hachtags,
-  verifyValidTags,
-  ErrorText.INVALID_HASHTAG,
-  1,
-  true
-);
-
-form.addEventListener('submit', (evt) => {
-  if (!pristine.validate()) {
-    evt.preventDefault();
+const sendForm = async (formElement) => {
+  if (!isValid()) {
+    return;
   }
-});
+
+  try {
+    toggleSubmitButton(true);
+    await sendData(new FormData(formElement));
+    toggleSubmitButton(false);
+    showSuccessMessage();
+    //closeForm();
+  } catch {
+    toggleSubmitButton(false);
+    showErrorMessage();
+  }
+
+  if (!isErrorMessegeExists()) {
+    closeForm();
+  }
+};
+
+const onFormSubmit = (evt) => {
+  evt.preventDefault();
+  sendForm(evt.target);
+};
 
 fileField.addEventListener('change', onUploadInputChange);
 buttonCansel.addEventListener('click', onUploadInputClick);
+form.addEventListener('submit', onFormSubmit);
+
+export {closeForm};
