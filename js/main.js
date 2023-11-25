@@ -1,16 +1,18 @@
+//import './scale.js';
 //import { getPhotos } from './data.js';
 //import { AMOUNT_PHOTO } from './constants.js';
 import { renderGallery } from './gallery.js';
-import './form.js';
-import { loadData } from './api.js';
 import { showErrorMessage } from './utils.js';
-//import './scale.js';
+import { loadData, sendData } from './api.js';
+import { initFilter } from './filters.js';
+import './form.js';
+
 
 const bootstrap = async () => {
   try {
     const pictures = await loadData();
-
     renderGallery(pictures);
+    initFilter(pictures);
   } catch (error) {
     showErrorMessage();
   }
@@ -18,7 +20,24 @@ const bootstrap = async () => {
 
 bootstrap();
 
-// const photos = getPhotos(AMOUNT_PHOTO);
-// console.log(photos);
 
 
+
+
+
+
+
+
+
+
+// const bootstrap = async () => {
+//   try {
+//     const pictures = await loadData();
+
+//     renderGallery(pictures);
+//   } catch (error) {
+//     showErrorMessage();
+//   }
+// };
+
+// bootstrap();
