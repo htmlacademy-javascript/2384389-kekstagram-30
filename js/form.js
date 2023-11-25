@@ -11,7 +11,7 @@ const SUBMIT_BUTTON_CARTION = {
 const form = document.querySelector('.img-upload__form');
 const fileField = form.querySelector('.img-upload__input');
 const overlay = form.querySelector('.img-upload__overlay');
-const body = form.querySelector('body');
+const body = document.querySelector('body');
 const buttonCansel = form.querySelector('.img-upload__cancel');
 const imagePreview = document.querySelector('.img-upload__preview img');
 const submitButton = form.querySelector('.img-upload__submit');
@@ -87,15 +87,15 @@ const sendForm = async (formElement) => {
     await sendData(new FormData(formElement));
     toggleSubmitButton(false);
     showSuccessMessage();
-    //closeForm();
+    closeForm();
   } catch {
     toggleSubmitButton(false);
     showErrorMessage();
   }
 
-  if (!isErrorMessegeExists()) {
-    closeForm();
-  }
+  // if (!isErrorMessegeExists()) {
+  //   closeForm();
+  // }
 };
 
 const onFormSubmit = (evt) => {
