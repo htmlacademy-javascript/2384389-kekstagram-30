@@ -2,11 +2,9 @@ import {resetEffect} from './effects.js';
 import {isValid, resetValidation} from './validation.js';
 import { sendData } from './api.js';
 import {showSuccessMessage, showErrorMessage} from './message.js';
+import { FILE_TYPES } from './constants.js';
+import { SUBMIT_BUTTON_CARTION } from './constants.js';
 
-const SUBMIT_BUTTON_CARTION = {
-  SUBMITTING: 'Отправляю...',
-  IDLE: 'Опубликовать',
-};
 
 const form = document.querySelector('.img-upload__form');
 const fileField = form.querySelector('.img-upload__input');
@@ -15,6 +13,7 @@ const body = document.querySelector('body');
 const buttonCansel = form.querySelector('.img-upload__cancel');
 const imagePreview = document.querySelector('.img-upload__preview img');
 const submitButton = form.querySelector('.img-upload__submit');
+const effectsPreview = form.querySelectorAll('.effects__preview ');
 
 const toggleSubmitButton = (isDisabled) => {
   submitButton.disabled = isDisabled;
@@ -58,14 +57,20 @@ const removeEventListenerEsc = () => {
   document.removeEventListener('keydown', onDocumentEscKeydown);
 };
 
+const isValidType = (file) => {
+  const fileName = file.name.toLowerCase();
+  return FILE_TYPES.some((it) => fileName.endsWith(it));
+};
 
-const effectsPreview = form.querySelectorAll('.effects__preview ');
 const renderImageModal = () => {
   const fileImage = fileField.files[0];
-  imagePreview.src = URL.createObjectURL(fileImage);
-  effectsPreview.forEach((preview) => {
-    preview.style.backgroundImage = `url('${imagePreview.src}')`;
-  });
+
+  if (fileImage && isValidType(fileImage)) {
+    imagePreview.src = URL.createObjectURL(fileImage);
+    effectsPreview.forEach((preview) => {
+      preview.style.backgroundImage = `url('${imagePreview.src}')`;
+    });
+  }
 };
 
 const onUploadInputChange = () => {
@@ -92,10 +97,6 @@ const sendForm = async (formElement) => {
     toggleSubmitButton(false);
     showErrorMessage();
   }
-
-  // if (!isErrorMessegeExists()) {
-  //   closeForm();
-  // }
 };
 
 const onFormSubmit = (evt) => {

@@ -1,18 +1,4 @@
-const SERVER_URL = 'https://30.javascript.pages.academy/kekstagram';
-const SERVER_ROUTE = {
-  GET_DATA: '/data',
-  SEND_DATA: '/',
-};
-
-const HTTP_METHOD = {
-  GET: 'GET',
-  POST: 'POST',
-};
-
-const TEXT_ERROR = {
-  GET: 'Не удалось загрузить данные. Попробуйте еще раз',
-  POST: 'Не удалось отправить данные.',
-};
+import { SERVER_URL, SERVER_ROUTE, HTTP_METHOD,TEXT_ERROR } from './constants.js';
 
 const request = async (url, method = HTTP_METHOD.GET, body = null) => {
   const response = await fetch(url, {method, body});

@@ -38,8 +38,6 @@ const onButtonSmallerClick = () => {
   lowerScale();
 };
 
-//getPreview(DEFOULT_SCALE);
-
 scaleButtonBigger.addEventListener('click', onButtonBiggerClick);
 scaleButtonSmaller.addEventListener('click', onButtonSmallerClick);
 

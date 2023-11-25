@@ -37,7 +37,7 @@
 // };
 
 // export { getRandomInteger, getRandomArrayElement, getUniqueRandomInteger };
-const REMOVE_MESSAGE_TIMEOUT = 5000;
+import {REMOVE_MESSAGE_TIMEOUT} from './constants.js';
 
 const errorMessageTemplate = document.querySelector('#data-error').content.querySelector('.data-error');
 

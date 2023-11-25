@@ -1,12 +1,12 @@
-const AMOUNT_PHOTO = 25;
-const MIN_AMOUNT_LIKES = 15;
-const MAX_AMOUNT_LIKES = 200;
-const AMOUNT_AVATAR = 6;
-const MAX_COMMENTS = 30;
-const MIN_COMMENTS = 0;
-const MAX_ID_COMMENTS = 999;
-const COMMENTATORS_NAMES = ['Мария','Семен','Патриция','Гоша','Есения','Илья', 'Даня', 'Ева', 'Джон', 'Марфа'];
-const COMMENTS_LINE = [
+export const AMOUNT_PHOTO = 25;
+export const MIN_AMOUNT_LIKES = 15;
+export const MAX_AMOUNT_LIKES = 200;
+export const AMOUNT_AVATAR = 6;
+export const MAX_COMMENTS = 30;
+export const MIN_COMMENTS = 0;
+export const MAX_ID_COMMENTS = 999;
+export const COMMENTATORS_NAMES = ['Мария','Семен','Патриция','Гоша','Есения','Илья', 'Даня', 'Ева', 'Джон', 'Марфа'];
+export const COMMENTS_LINE = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
   'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
@@ -14,7 +14,7 @@ const COMMENTS_LINE = [
   'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
 ];
-const DESCRIPTION = [
+export const DESCRIPTION = [
   'Будь собой, никто не сможет сделать это лучше',
   'Твори, вдохновляйся, мечтай',
   'Путешествие – это та вещь, купив которую вы станете только богаче',
@@ -28,34 +28,34 @@ const DESCRIPTION = [
   'Раз в год отправляйся туда, где ты ещё ни разу не был',
   'Места, которые вы посещаете, изменяют вас',
 ];
-const MAX_HASHTAGS_COUNT = 5;
-const VALID_HASHTAG = /^#[a-zа-яё1-9]{1,19}$/i;
+export const MAX_HASHTAGS_COUNT = 5;
+export const VALID_HASHTAG = /^#[a-zа-яё1-9]{1,19}$/i;
 
-const DEFOULT_SCALE = 100;
-const MAX_SCALE = 100;
-const MIN_SCALE = 25;
-const CHENGE_STEP_SCALE = 25;
+export const DEFOULT_SCALE = 100;
+export const MAX_SCALE = 100;
+export const MIN_SCALE = 25;
+export const CHENGE_STEP_SCALE = 25;
 
-export {
-  AMOUNT_PHOTO,
-  MIN_AMOUNT_LIKES,
-  MAX_AMOUNT_LIKES,
-  AMOUNT_AVATAR,
-  MAX_COMMENTS,
-  MIN_COMMENTS,
-  MAX_ID_COMMENTS,
-  COMMENTATORS_NAMES,
-  COMMENTS_LINE,
-  DESCRIPTION,
-  MAX_HASHTAGS_COUNT,
-  VALID_HASHTAG,
-  DEFOULT_SCALE,
-  MAX_SCALE,
-  MIN_SCALE,
-  CHENGE_STEP_SCALE
-};
+// export {
+//   AMOUNT_PHOTO,
+//   MIN_AMOUNT_LIKES,
+//   MAX_AMOUNT_LIKES,
+//   AMOUNT_AVATAR,
+//   MAX_COMMENTS,
+//   MIN_COMMENTS,
+//   MAX_ID_COMMENTS,
+//   COMMENTATORS_NAMES,
+//   COMMENTS_LINE,
+//   DESCRIPTION,
+//   MAX_HASHTAGS_COUNT,
+//   VALID_HASHTAG,
+//   DEFOULT_SCALE,
+//   MAX_SCALE,
+//   MIN_SCALE,
+//   CHENGE_STEP_SCALE
+// };
 
-const EFFECT = {
+export const EFFECT = {
   DEFAULT: 'none',
   CHROME: 'chrome',
   SEPIA: 'sepia',
@@ -64,7 +64,7 @@ const EFFECT = {
   HEAT: 'heat'
 };
 
-const OPTION_EFFECT_SLIDER = {
+export const OPTION_EFFECT_SLIDER = {
   [EFFECT.DEFAULT]: {
     min: 0,
     max: 100,
@@ -97,7 +97,7 @@ const OPTION_EFFECT_SLIDER = {
   },
 };
 
-const EFFECT_TO_FILTER = {
+export const EFFECT_TO_FILTER = {
   [  EFFECT.DEFAULT]: {
     style: 'none',
     unit: '',
@@ -124,4 +124,45 @@ const EFFECT_TO_FILTER = {
   },
 };
 
-export {EFFECT, EFFECT_TO_FILTER, OPTION_EFFECT_SLIDER};
+export const REMOVE_MESSAGE_TIMEOUT = 5000;
+export const FILE_TYPES = ['jpeg', 'jpg', 'png'];
+export const SUBMIT_BUTTON_CARTION = {
+  SUBMITTING: 'Отправляю...',
+  IDLE: 'Опубликовать',
+};
+export const FILTER_ENUM = {
+  DEFAULT: 'default',
+  RANDOM: 'random',
+  DISCUSSED: 'discussed',
+};
+
+export const MAX_RANDOM_FILTER = 10;
+export const COMMENTS_AMOUNT_SHOW = 5;
+
+export const SERVER_URL = 'https://30.javascript.pages.academy/kekstagram';
+export const SERVER_ROUTE = {
+  GET_DATA: '/data',
+  SEND_DATA: '/',
+};
+
+export const HTTP_METHOD = {
+  GET: 'GET',
+  POST: 'POST',
+};
+
+export const TEXT_ERROR = {
+  GET: 'Не удалось загрузить данные. Попробуйте еще раз',
+  POST: 'Не удалось отправить данные.',
+};
+
+// export {
+//   EFFECT,
+//   EFFECT_TO_FILTER,
+//   OPTION_EFFECT_SLIDER,
+//   REMOVE_MESSAGE_TIMEOUT,
+//   FILE_TYPES,
+//   SUBMIT_BUTTON_CARTION,
+//   FILTER_ENUM,
+//   MAX_RANDOM_FILTER,
+//   COMMENTS_AMOUNT_SHOW,
+// };

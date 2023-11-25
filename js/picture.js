@@ -1,4 +1,4 @@
-const COMMENTS_AMOUNT_SHOW = 5;
+import { COMMENTS_AMOUNT_SHOW } from './constants.js';
 
 let commentsAmountShown = 0;
 
@@ -35,7 +35,7 @@ const renderComments = () => {
 
   } else {
     commentLoader.classList.remove('hidden');
-  };
+  }
 
   const fragmentContainerComment = document.createDocumentFragment();
   for (let i = 0; i < commentsAmountShown; i++) {

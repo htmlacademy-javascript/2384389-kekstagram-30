@@ -1,19 +1,14 @@
-import { renderGallery } from "./gallery";
-import { debounce } from "./utils";
+import { renderGallery } from './gallery.js';
+import { debounce } from './utils.js';
+import { FILTER_ENUM } from './constants.js';
+import { MAX_RANDOM_FILTER } from './constants.js';
+
 
 const filtersElement = document.querySelector('.img-filters');
 const filterForm = document.querySelector('.img-filters__form');
 const defaultButton = filterForm.querySelector('#filter-default');
 const rundomButton = filterForm.querySelector('#filter-random');
 const discussedButton = filterForm.querySelector('#filter-discussed');
-
-const FILTER_ENUM = {
-  DEFAULT: 'default',
-  RANDOM: 'random',
-  DISCUSSED: 'discussed',
-};
-
-const MAX_RANDOM_FILTER = 10;
 
 const getRandomIndex = (min, max) => Math.floor(Math.random() * (max - min));
 
