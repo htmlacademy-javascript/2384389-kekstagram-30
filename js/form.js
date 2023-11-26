@@ -2,8 +2,7 @@ import { resetEffect } from './effects.js';
 import { isValid, resetValidation } from './validation.js';
 import { sendData } from './api.js';
 import {showSuccessMessage, showErrorMessage} from './message.js';
-import { DEFAULT_SCALE, FILE_TYPES } from './constants.js';
-import { SUBMIT_BUTTON_CARTION } from './constants.js';
+import { DEFAULT_SCALE, FILE_TYPES, SubmytButtonCaption } from './constants.js';
 import { getPreview } from './scale.js';
 
 const form = document.querySelector('.img-upload__form');
@@ -18,9 +17,9 @@ const effectsPreview = form.querySelectorAll('.effects__preview ');
 const toggleSubmitButton = (isDisabled) => {
   submitButton.disabled = isDisabled;
   if (isDisabled) {
-    submitButton.textContent = SUBMIT_BUTTON_CARTION.SUBMITTING;
+    submitButton.textContent = SubmytButtonCaption.SUBMITTING;
   } else {
-    submitButton.textContent = SUBMIT_BUTTON_CARTION.IDLE;
+    submitButton.textContent = SubmytButtonCaption.IDLE;
   }
 };
 

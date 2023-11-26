@@ -1,14 +1,7 @@
-import { MAX_HASHTAGS_COUNT } from './constants.js';
-import { VALID_HASHTAG } from './constants.js';
+import { MAX_HASHTAGS_COUNT, VALID_HASHTAG, ErrorText } from './constants.js';
 
 const form = document.querySelector('.img-upload__form');
-const hachtags = form.querySelector('.text__hashtags');
-
-const ErrorText = {
-  INVALID_HASHTAG: 'Введён неправильный хэш-тег',
-  INVALID_HASHTAGS_COUNT: `Максимум ${MAX_HASHTAGS_COUNT} хэш-тэгов`,
-  NOT_UNIQUE: 'Хэштеги не должны повторяться'
-};
+const hachtag = form.querySelector('.text__hashtags');
 
 const pristine = new Pristine(form, {
   classTo: 'img-upload__field-wrapper',
@@ -39,7 +32,7 @@ const verifyTagUnique = (value) => {
 };
 
 pristine.addValidator(
-  hachtags,
+  hachtag,
   verifyTagsCount,
   ErrorText.INVALID_HASHTAGS_COUNT,
   3,
@@ -47,7 +40,7 @@ pristine.addValidator(
 );
 
 pristine.addValidator(
-  hachtags,
+  hachtag,
   verifyTagUnique,
   ErrorText.NOT_UNIQUE,
   2,
@@ -55,7 +48,7 @@ pristine.addValidator(
 );
 
 pristine.addValidator(
-  hachtags,
+  hachtag,
   verifyValidTags,
   ErrorText.INVALID_HASHTAG,
   1,
