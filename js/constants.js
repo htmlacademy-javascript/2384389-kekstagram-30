@@ -4,7 +4,7 @@ export const DEFAULT_SCALE = 100;
 export const MAX_SCALE = 100;
 export const MIN_SCALE = 25;
 export const CHENGE_STEP_SCALE = 25;
-export const EFFECT = {
+export const Effect = {
   DEFAULT: 'none',
   CHROME: 'chrome',
   SEPIA: 'sepia',
@@ -12,67 +12,67 @@ export const EFFECT = {
   PHOBOS: 'phobos',
   HEAT: 'heat'
 };
-export const OPTION_EFFECT_SLIDER = {
-  [EFFECT.DEFAULT]: {
+export const OtionEffectSlider = {
+  [Effect.DEFAULT]: {
     min: 0,
     max: 100,
     step: 1,
   },
-  [  EFFECT.CHROME]: {
+  [Effect.CHROME]: {
     min: 0,
     max: 1,
     step: 0.1,
   },
-  [  EFFECT.SEPIA]: {
+  [Effect.SEPIA]: {
     min: 0,
     max: 1,
     step: 0.1,
   },
-  [  EFFECT.MARVIN]: {
+  [Effect.MARVIN]: {
     min: 0,
     max: 100,
     step: 1,
   },
-  [  EFFECT.PHOBOS]: {
+  [Effect.PHOBOS]: {
     min: 0,
     max: 3,
     step: 0.1,
   },
-  [  EFFECT.HEAT]: {
+  [Effect.HEAT]: {
     min: 1,
     max: 3,
     step: 0.1,
   },
 };
-export const EFFECT_TO_FILTER = {
-  [  EFFECT.DEFAULT]: {
+export const EffectToFilter = {
+  [Effect.DEFAULT]: {
     style: 'none',
     unit: '',
   },
-  [  EFFECT.CHROME]: {
+  [Effect.CHROME]: {
     style: 'grayscale',
     unit: '',
   },
-  [  EFFECT.SEPIA]: {
+  [Effect.SEPIA]: {
     style: 'sepia',
     unit: '',
   },
-  [  EFFECT.MARVIN]: {
+  [Effect.MARVIN]: {
     style: 'invert',
     unit: '%',
   },
-  [  EFFECT.PHOBOS]: {
+  [Effect.PHOBOS]: {
     style: 'blur',
     unit: 'px',
   },
-  [  EFFECT.HEAT]: {
+  [Effect.HEAT]: {
     style: 'brightness',
     unit: '',
   },
 };
 export const REMOVE_MESSAGE_TIMEOUT = 5000;
 export const FILE_TYPES = ['jpeg', 'jpg', 'png'];
-export const SUBMIT_BUTTON_CARTION = {
+export const SubmytButtonCaption = {
   SUBMITTING: 'Отправляю...',
   IDLE: 'Опубликовать',
 };
@@ -84,15 +84,20 @@ export const FilterEnum = {
 export const MAX_RANDOM_FILTER = 10;
 export const COMMENTS_AMOUNT_SHOW = 5;
 export const SERVER_URL = 'https://30.javascript.pages.academy/kekstagram';
-export const SERVER_ROUTE = {
+export const ServerRoute = {
   GET_DATA: '/data',
   SEND_DATA: '/',
 };
-export const HTTP_METHOD = {
+export const HttpMethod = {
   GET: 'GET',
   POST: 'POST',
 };
-export const TEXT_ERROR = {
+export const TextError = {
   GET: 'Не удалось загрузить данные. Попробуйте еще раз',
   POST: 'Не удалось отправить данные.',
+};
+export const ErrorText = {
+  INVALID_HASHTAG: 'Введён неправильный хэш-тег',
+  INVALID_HASHTAGS_COUNT: `Максимум ${MAX_HASHTAGS_COUNT} хэш-тэгов`,
+  NOT_UNIQUE: 'Хэштеги не должны повторяться'
 };

@@ -1,4 +1,4 @@
-import { EFFECT, EFFECT_TO_FILTER, OPTION_EFFECT_SLIDER } from './constants.js';
+import { Effect, EffectToFilter, OtionEffectSlider } from './constants.js';
 
 const imageUpload = document.querySelector('.img-upload');
 const sliderContainer = imageUpload.querySelector('.img-upload__effect-level');
@@ -25,7 +25,7 @@ const getSlider = ({min, max, step}) => {
   });
   slider.noUiSlider.on('update', () => {
     effectLevel.value = slider.noUiSlider.get();
-    renderEffect(EFFECT_TO_FILTER[document.querySelector('.effects__radio:checked').value]);
+    renderEffect(EffectToFilter[document.querySelector('.effects__radio:checked').value]);
   });
 };
 
@@ -66,12 +66,12 @@ const resetEffect = () => {
 };
 
 effectElementContainer.addEventListener('change', (evt) => {
-  if (evt.target.value === EFFECT.DEFAULT) {
+  if (evt.target.value === Effect.DEFAULT) {
     setDefaultEffect();
   } else {
     showSlider();
-    updateSlider(OPTION_EFFECT_SLIDER[evt.target.value]);
-    renderEffect(EFFECT_TO_FILTER[evt.target.value]);
+    updateSlider(OtionEffectSlider[evt.target.value]);
+    renderEffect(EffectToFilter[evt.target.value]);
   }
 });
 
