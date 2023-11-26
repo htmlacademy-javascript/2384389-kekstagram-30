@@ -1,21 +1,17 @@
-import {EFFECT, EFFECT_TO_FILTER, OPTION_EFFECT_SLIDER} from './constants.js';
-import {getPreview} from './scale.js';
-import {DEFOULT_SCALE} from './constants.js';
+import { EFFECT, EFFECT_TO_FILTER, OPTION_EFFECT_SLIDER } from './constants.js';
 
 const imageUpload = document.querySelector('.img-upload');
 const sliderContainer = imageUpload.querySelector('.img-upload__effect-level');
-const slider = sliderContainer.querySelector('.effect-level__slider'); //слайдер
-const effectElementContainer = imageUpload.querySelector('.effects__list'); //список эффектов
+const slider = sliderContainer.querySelector('.effect-level__slider');
+const effectElementContainer = imageUpload.querySelector('.effects__list');
 const previewPicture = imageUpload.querySelector('.img-upload__preview img');
 const effectLevel = imageUpload.querySelector('.effect-level__value');
 const defaultRadio = imageUpload.querySelector('#effect-none');
 
-//функция для отрисовки эффекта
 const renderEffect = ({style, unit}) => {
   previewPicture.style.filter = `${style}(${effectLevel.value}${unit})`;
 };
 
-//функция для настройки параметров слайдера
 const getSlider = ({min, max, step}) => {
   noUiSlider.create(slider, {
     range: {min, max},
@@ -28,7 +24,7 @@ const getSlider = ({min, max, step}) => {
     }
   });
   slider.noUiSlider.on('update', () => {
-    effectLevel.value = slider.noUiSlider.get(); //текущее значение слайдера
+    effectLevel.value = slider.noUiSlider.get();
     renderEffect(EFFECT_TO_FILTER[document.querySelector('.effects__radio:checked').value]);
   });
 };
@@ -41,11 +37,10 @@ const updateSlider = ({min, max, step}) => {
   });
 };
 
-//вызывает стартовое значение слайдера
 getSlider({min:0, max:100, step:1});
 
 const resetImage = () => {
-  previewPicture.style = '';
+  previewPicture.style.filter = '';
 };
 
 const showSlider = () => {
@@ -59,7 +54,6 @@ const hideSlider = () => {
 const setDefaultEffect = () => {
   hideSlider();
   resetImage();
-  getPreview(DEFOULT_SCALE);
 };
 
 const checkDefaultRadio = () => {
@@ -81,4 +75,4 @@ effectElementContainer.addEventListener('change', (evt) => {
   }
 });
 
-export {resetEffect};
+export { resetEffect };
