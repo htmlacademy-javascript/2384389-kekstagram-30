@@ -10,23 +10,21 @@ const hideMessage = () => {
 
 const onCloseButtonClick = () => {
   hideMessage();
-
 };
 
-const onDocumentKeydown = (evt) => {
+function onDocumentKeydown (evt) {
   if (evt.key === 'Escape') {
     evt.preventDefault();
     hideMessage();
   }
-};
+}
 
-const onDocumentClick = (evt) => {
+function onDocumentClick (evt) {
   if (evt.target.closest('.success__inner') || evt.target.closest('.error__inner')) {
     return;
   }
   hideMessage();
-
-};
+}
 
 const showMessage = (element, buttonClass) => {
   document.body.append(element);

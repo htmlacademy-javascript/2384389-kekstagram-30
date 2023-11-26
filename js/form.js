@@ -1,10 +1,10 @@
-import {resetEffect} from './effects.js';
-import {isValid, resetValidation} from './validation.js';
+import { resetEffect } from './effects.js';
+import { isValid, resetValidation } from './validation.js';
 import { sendData } from './api.js';
 import {showSuccessMessage, showErrorMessage} from './message.js';
-import { FILE_TYPES } from './constants.js';
+import { DEFAULT_SCALE, FILE_TYPES } from './constants.js';
 import { SUBMIT_BUTTON_CARTION } from './constants.js';
-
+import { getPreview } from './scale.js';
 
 const form = document.querySelector('.img-upload__form');
 const fileField = form.querySelector('.img-upload__input');
@@ -17,7 +17,6 @@ const effectsPreview = form.querySelectorAll('.effects__preview ');
 
 const toggleSubmitButton = (isDisabled) => {
   submitButton.disabled = isDisabled;
-
   if (isDisabled) {
     submitButton.textContent = SUBMIT_BUTTON_CARTION.SUBMITTING;
   } else {
@@ -29,6 +28,8 @@ const openForm = () => {
   resetEffect();
   overlay.classList.remove('hidden');
   body.classList.add('modal-open');
+  getPreview(DEFAULT_SCALE);
+  addEventListenerEsc();
 };
 
 const closeForm = () => {
@@ -51,11 +52,13 @@ const onDocumentEscKeydown = (evt) => {
   }
 };
 
-document.addEventListener('keydown', onDocumentEscKeydown);
+function addEventListenerEsc () {
+  document.addEventListener('keydown', onDocumentEscKeydown);
+}
 
-const removeEventListenerEsc = () => {
+function removeEventListenerEsc () {
   document.removeEventListener('keydown', onDocumentEscKeydown);
-};
+}
 
 const isValidType = (file) => {
   const fileName = file.name.toLowerCase();
@@ -64,7 +67,6 @@ const isValidType = (file) => {
 
 const renderImageModal = () => {
   const fileImage = fileField.files[0];
-
   if (fileImage && isValidType(fileImage)) {
     imagePreview.src = URL.createObjectURL(fileImage);
     effectsPreview.forEach((preview) => {
@@ -108,4 +110,4 @@ fileField.addEventListener('change', onUploadInputChange);
 buttonCansel.addEventListener('click', onUploadInputClick);
 form.addEventListener('submit', onFormSubmit);
 
-export {closeForm};
+export { closeForm };

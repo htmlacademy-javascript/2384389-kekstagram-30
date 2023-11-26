@@ -17,5 +17,4 @@ const sendData = async (pictureData) =>
     pictureData,
   );
 
-
-export {loadData, sendData};
+export { loadData, sendData };

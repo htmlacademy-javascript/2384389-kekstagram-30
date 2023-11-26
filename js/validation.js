@@ -1,5 +1,6 @@
-import {MAX_HASHTAGS_COUNT} from './constants.js';
-import {VALID_HASHTAG} from './constants.js';
+import { MAX_HASHTAGS_COUNT } from './constants.js';
+import { VALID_HASHTAG } from './constants.js';
+
 const form = document.querySelector('.img-upload__form');
 const hachtags = form.querySelector('.text__hashtags');
 
@@ -16,8 +17,6 @@ const pristine = new Pristine(form, {
 });
 
 const normalizeHashtags = (stringTags) => stringTags.trim().split(' ').filter(Boolean);
-
-//const verifyValidTags = (value) => normalizeHashtags(value).every((tag) => VALID_HASHTAG.test(tag));
 
 const verifyValidTags = (value) => {
   const tagsString = normalizeHashtags(value);
@@ -67,4 +66,4 @@ const isValid = () => pristine.validate();
 
 const resetValidation = () => pristine.reset();
 
-export {isValid, resetValidation};
+export { isValid, resetValidation };
