@@ -9,7 +9,7 @@ const form = document.querySelector('.img-upload__form');
 const fileField = form.querySelector('.img-upload__input');
 const overlay = form.querySelector('.img-upload__overlay');
 const body = document.querySelector('body');
-const buttonCansel = form.querySelector('.img-upload__cancel');
+const buttonCancel = form.querySelector('.img-upload__cancel');
 const imagePreview = document.querySelector('.img-upload__preview img');
 const submitButton = form.querySelector('.img-upload__submit');
 const effectsPreview = form.querySelectorAll('.effects__preview ');
@@ -106,7 +106,7 @@ const onFormSubmit = (evt) => {
 };
 
 fileField.addEventListener('change', onUploadInputChange);
-buttonCansel.addEventListener('click', onUploadInputClick);
+buttonCancel.addEventListener('click', onUploadInputClick);
 form.addEventListener('submit', onFormSubmit);
 
 export { closeForm };
