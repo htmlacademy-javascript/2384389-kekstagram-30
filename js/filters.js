@@ -26,7 +26,7 @@ const filterHandlers = {
   [FilterEnum.DISCUSSED]: (data) => [...data].sort((item1, item2) => item2.comments.length - item1.comments.length)
 };
 
-const setActivButton = (evt) => {
+const setActiveButton = (evt) => {
   const currentActiveElement = filterForm.querySelector('.img-filters__button--active');
   currentActiveElement.classList.remove('img-filters__button--active');
   evt.target.classList.add('img-filters__button--active');
@@ -42,14 +42,12 @@ const repaint = (filter, data) => {
 const debounceRepaint = debounce(repaint);
 
 const onButtonClick = (evt, data) => {
-  setActivButton(evt);
+  setActiveButton(evt);
   if (evt.target === defaultButton) {
     debounceRepaint(FilterEnum.DEFAULT, data);
-  }
-  if (evt.target === rundomButton) {
+  } else if (evt.target === rundomButton) {
     debounceRepaint(FilterEnum.RANDOM, data);
-  }
-  if (evt.target === discussedButton) {
+  } else if (evt.target === discussedButton) {
     debounceRepaint(FilterEnum.DISCUSSED, data);
   }
 };
