@@ -1,17 +1,17 @@
 import { renderThumbnails } from './thumbnail.js';
 import { showPicture } from './picture.js';
 
-const container = document.querySelector('.pictures');
+const containerElement = document.querySelector('.pictures');
 
 const pictures = [];
 
 const renderGallery = (data) => {
   pictures.length = 0;
   pictures.push(...data.slice());
-  renderThumbnails(pictures, container);
+  renderThumbnails(pictures, containerElement);
 };
 
-container.addEventListener('click', (evt) => {
+containerElement.addEventListener('click', (evt) => {
   const thumbnail = evt.target.closest('[data-photo-id]');
   if (!thumbnail) {
     return;

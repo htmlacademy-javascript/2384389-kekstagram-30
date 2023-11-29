@@ -1,9 +1,9 @@
 import { REMOVE_MESSAGE_TIMEOUT } from './constants.js';
 
-const errorMessageTemplate = document.querySelector('#data-error').content.querySelector('.data-error');
+const errorMessageTemplateElement = document.querySelector('#data-error').content.querySelector('.data-error');
 
 const showErrorMessage = () => {
-  const errorMessageElement = errorMessageTemplate.cloneNode(true);
+  const errorMessageElement = errorMessageTemplateElement.cloneNode(true);
   document.body.appendChild(errorMessageElement);
   setTimeout(() => {
     errorMessageElement.remove();

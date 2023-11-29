@@ -3,31 +3,31 @@ import { debounce, getRandomIndex } from './utils.js';
 import { FilterEnum, MAX_RANDOM_FILTER } from './constants.js';
 
 const filtersElement = document.querySelector('.img-filters');
-const filterForm = document.querySelector('.img-filters__form');
-const defaultButton = filterForm.querySelector('#filter-default');
-const rundomButton = filterForm.querySelector('#filter-random');
-const discussedButton = filterForm.querySelector('#filter-discussed');
+const filterFormElement = document.querySelector('.img-filters__form');
+const defaultButtonElement = filterFormElement.querySelector('#filter-default');
+const randomButtonElement = filterFormElement.querySelector('#filter-random');
+const discussedButtonElement = filterFormElement.querySelector('#filter-discussed');
 
 const filterHandlers = {
   [FilterEnum.DEFAULT]: (data) => data,
 
   [FilterEnum.RANDOM]: (data) => {
-    const randomIndexList = [];
+    const randomPhotos = [];
     const max = Math.min(MAX_RANDOM_FILTER, data.length);
-    while(randomIndexList.length < max) {
+    while(randomPhotos.length < max) {
       const index = getRandomIndex(0, data.length);
-      if(!randomIndexList.includes(index)) {
-        randomIndexList.push(index);
+      if(!randomPhotos.includes(index)) {
+        randomPhotos.push(index);
       }
     }
-    return randomIndexList.map((index) => data[index]);
+    return randomPhotos.map((index) => data[index]);
   },
 
   [FilterEnum.DISCUSSED]: (data) => [...data].sort((item1, item2) => item2.comments.length - item1.comments.length)
 };
 
 const setActiveButton = (evt) => {
-  const currentActiveElement = filterForm.querySelector('.img-filters__button--active');
+  const currentActiveElement = filterFormElement.querySelector('.img-filters__button--active');
   currentActiveElement.classList.remove('img-filters__button--active');
   evt.target.classList.add('img-filters__button--active');
 };
@@ -43,11 +43,11 @@ const debounceRepaint = debounce(repaint);
 
 const onButtonClick = (evt, data) => {
   setActiveButton(evt);
-  if (evt.target === defaultButton) {
+  if (evt.target === defaultButtonElement) {
     debounceRepaint(FilterEnum.DEFAULT, data);
-  } else if (evt.target === rundomButton) {
+  } else if (evt.target === randomButtonElement) {
     debounceRepaint(FilterEnum.RANDOM, data);
-  } else if (evt.target === discussedButton) {
+  } else if (evt.target === discussedButtonElement) {
     debounceRepaint(FilterEnum.DISCUSSED, data);
   }
 };

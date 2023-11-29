@@ -1,9 +1,9 @@
 import { MAX_HASHTAGS_COUNT, VALID_HASHTAG, ErrorText } from './constants.js';
 
-const form = document.querySelector('.img-upload__form');
-const hachtag = form.querySelector('.text__hashtags');
+const formElement = document.querySelector('.img-upload__form');
+const hachtagElement = formElement.querySelector('.text__hashtags');
 
-const pristine = new Pristine(form, {
+const pristine = new Pristine(formElement, {
   classTo: 'img-upload__field-wrapper',
   errorClass: 'img-upload__field-wrapper--error',
   errorTextParent: 'img-upload__field-wrapper',
@@ -32,7 +32,7 @@ const verifyTagUnique = (value) => {
 };
 
 pristine.addValidator(
-  hachtag,
+  hachtagElement,
   verifyTagsCount,
   ErrorText.INVALID_HASHTAGS_COUNT,
   3,
@@ -40,7 +40,7 @@ pristine.addValidator(
 );
 
 pristine.addValidator(
-  hachtag,
+  hachtagElement,
   verifyTagUnique,
   ErrorText.NOT_UNIQUE,
   2,
@@ -48,7 +48,7 @@ pristine.addValidator(
 );
 
 pristine.addValidator(
-  hachtag,
+  hachtagElement,
   verifyValidTags,
   ErrorText.INVALID_HASHTAG,
   1,
