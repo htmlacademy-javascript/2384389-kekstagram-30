@@ -5,38 +5,38 @@ import {showSuccessMessage, showErrorMessage} from './message.js';
 import { DEFAULT_SCALE, FILE_TYPES, SubmytButtonCaption } from './constants.js';
 import { getPreview } from './scale.js';
 
-const form = document.querySelector('.img-upload__form');
-const fileField = form.querySelector('.img-upload__input');
-const overlay = form.querySelector('.img-upload__overlay');
-const body = document.querySelector('body');
-const buttonCancel = form.querySelector('.img-upload__cancel');
-const imagePreview = document.querySelector('.img-upload__preview img');
-const submitButton = form.querySelector('.img-upload__submit');
-const effectsPreview = form.querySelectorAll('.effects__preview ');
+const formElement = document.querySelector('.img-upload__form');
+const fileFieldElement = formElement.querySelector('.img-upload__input');
+const overlayElement = formElement.querySelector('.img-upload__overlay');
+const bodyElement = document.querySelector('body');
+const buttonCancelElement = formElement.querySelector('.img-upload__cancel');
+const imagePreviewElement = document.querySelector('.img-upload__preview img');
+const submitButtonElement = formElement.querySelector('.img-upload__submit');
+const effectsPreviewElement = formElement.querySelectorAll('.effects__preview ');
 
 const toggleSubmitButton = (isDisabled) => {
-  submitButton.disabled = isDisabled;
+  submitButtonElement.disabled = isDisabled;
   if (isDisabled) {
-    submitButton.textContent = SubmytButtonCaption.SUBMITTING;
+    submitButtonElement.textContent = SubmytButtonCaption.SUBMITTING;
   } else {
-    submitButton.textContent = SubmytButtonCaption.IDLE;
+    submitButtonElement.textContent = SubmytButtonCaption.IDLE;
   }
 };
 
 const openForm = () => {
   resetEffect();
-  overlay.classList.remove('hidden');
-  body.classList.add('modal-open');
+  overlayElement.classList.remove('hidden');
+  bodyElement.classList.add('modal-open');
   getPreview(DEFAULT_SCALE);
   addEventListenerEsc();
 };
 
 const closeForm = () => {
-  form.reset();
+  formElement.reset();
   resetValidation();
-  overlay.classList.add('hidden');
-  body.classList.remove('modal-open');
-  fileField.value = '';
+  overlayElement.classList.add('hidden');
+  bodyElement.classList.remove('modal-open');
+  fileFieldElement.value = '';
   removeEventListenerEsc();
 };
 
@@ -65,11 +65,11 @@ const isValidType = (file) => {
 };
 
 const renderImageModal = () => {
-  const fileImage = fileField.files[0];
+  const fileImage = fileFieldElement.files[0];
   if (fileImage && isValidType(fileImage)) {
-    imagePreview.src = URL.createObjectURL(fileImage);
-    effectsPreview.forEach((preview) => {
-      preview.style.backgroundImage = `url('${imagePreview.src}')`;
+    imagePreviewElement.src = URL.createObjectURL(fileImage);
+    effectsPreviewElement.forEach((preview) => {
+      preview.style.backgroundImage = `url('${imagePreviewElement.src}')`;
     });
   }
 };
@@ -83,14 +83,14 @@ const onUploadInputClick = () => {
   closeForm();
 };
 
-const sendForm = async (formElement) => {
+const sendForm = async (formItem) => {
   if (!isValid()) {
     return;
   }
 
   try {
     toggleSubmitButton(true);
-    await sendData(new FormData(formElement));
+    await sendData(new FormData(formItem));
     toggleSubmitButton(false);
     showSuccessMessage();
     closeForm();
@@ -105,8 +105,8 @@ const onFormSubmit = (evt) => {
   sendForm(evt.target);
 };
 
-fileField.addEventListener('change', onUploadInputChange);
-buttonCancel.addEventListener('click', onUploadInputClick);
-form.addEventListener('submit', onFormSubmit);
+fileFieldElement.addEventListener('change', onUploadInputChange);
+buttonCancelElement.addEventListener('click', onUploadInputClick);
+formElement.addEventListener('submit', onFormSubmit);
 
 export { closeForm };
